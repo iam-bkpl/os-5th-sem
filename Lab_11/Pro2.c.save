@@ -1,0 +1,21 @@
+void main()
+{ int pfd[2];
+if(pipe(pfd)<0)
+printf("error");
+if(!fork()){
+char data;
+printf("I’m child");
+printf("press any key to exit……");
+scanf("%c",&data);
+write(pfd[1],&data,1);
+printf("child exiting");
+}
+else{
+char data;
+read(pfd[0],&data,1);
+Printf("I’m parent");
+printf("received %c from child",data);
+printf("parent exiting……\n");
+exit(0);
+}
+}
